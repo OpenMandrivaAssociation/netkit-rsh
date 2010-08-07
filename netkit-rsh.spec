@@ -1,7 +1,7 @@
 Summary:	Clients for remote access commands (rsh, rlogin, rcp)
-Name:		rsh
+Name:		netkit-rsh
 Version:	0.17
-Release:	%mkrel 26
+Release:	%mkrel 27
 License:	BSD
 Group:		Networking/Remote access
 URL:		ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/
@@ -55,6 +55,7 @@ BuildRequires:	libtermcap-devel
 BuildRequires:	pam-devel
 BuildRequires:	audit-libs-devel >= 1.5
 Conflicts:	krb5-appl-clients
+Obsoletes:	rsh
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -82,7 +83,7 @@ remote commands. All of these servers are run by xinetd and configured using
 
 %prep
 
-%setup -q -n netkit-rsh-%{version} -a 4
+%setup -q -a 4
 
 %patch1 -p1 -b .sectty
 %patch2 -p1 -b .rexec
