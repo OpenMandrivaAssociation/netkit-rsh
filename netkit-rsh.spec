@@ -51,6 +51,9 @@ Patch38:	netkit-rsh-0.17-rh461903.patch
 # (ahmad) add check for return values
 # https://bugzilla.redhat.com/show_bug.cgi?id=473492
 Patch39:	netkit-rsh-0.17-rh473492.patch
+# (proyvind): create destination directories when installing
+Patch40:	netkit-rsh-0.17-install-create-destdir.patch
+
 BuildRequires:	termcap-devel
 BuildRequires:	pam-devel
 BuildRequires:	audit-libs-devel >= 1.5
@@ -118,6 +121,7 @@ remote commands. All of these servers are run by xinetd and configured using
 %patch37 -p1 -b .arg_max
 %patch38 -p1 -b .rh461903
 %patch39 -p1 -b .rh473492
+%patch40 -p1 -b .install~
 
 # No, I don't know what this is doing in the tarball.
 rm -f rexec/rexec
@@ -136,23 +140,17 @@ sed	-e 's#^CC=.*$#CC=gcc#g' \
 %make
 
 %install
-install -d %{buildroot}%{_sysconfdir}/xinetd.d
-install -d %{buildroot}%{_sysconfdir}/pam.d
-install -d %{buildroot}%{_bindir}
-install -d %{buildroot}%{_sbindir}
-install -d %{buildroot}%{_mandir}/{man1,man5,man8}
-
 make INSTALLROOT=%{buildroot} MANDIR=%{_mandir} install
 
-install -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pam.d/rexec
-install -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pam.d/rlogin
-install -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pam.d/rsh
+install -m0644 %{SOURCE1} -D %{buildroot}%{_sysconfdir}/pam.d/rexec
+install -m0644 %{SOURCE2} -D %{buildroot}%{_sysconfdir}/pam.d/rlogin
+install -m0644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/pam.d/rsh
 
 make INSTALLROOT=%{buildroot} MANDIR=%{_mandir} install -C rexec
 
-install -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/xinetd.d/rsh
-install -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/xinetd.d/rlogin
-install -m0644 %{SOURCE7} %{buildroot}%{_sysconfdir}/xinetd.d/rexec
+install -m0644 %{SOURCE5} -D %{buildroot}%{_sysconfdir}/xinetd.d/rsh
+install -m0644 %{SOURCE6} -D %{buildroot}%{_sysconfdir}/xinetd.d/rlogin
+install -m0644 %{SOURCE7} -D %{buildroot}%{_sysconfdir}/xinetd.d/rexec
 
 %files
 %{_bindir}/rexec
