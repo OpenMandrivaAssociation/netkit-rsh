@@ -1,7 +1,7 @@
 Summary:	Clients for remote access commands (rsh, rlogin, rcp)
 Name:		netkit-rsh
 Version:	0.17
-Release:	28
+Release:	29
 License:	BSD
 Group:		Networking/Remote access
 URL:		ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/
@@ -74,6 +74,7 @@ Summary:	Servers for remote access commands (rsh, rlogin, rcp)
 Group:		System/Servers
 Requires:	pam >= 0.59
 Requires:	xinetd
+Provides:	rsh-server
 
 %description	server
 The rsh-server package contains a set of programs which allow users to run
