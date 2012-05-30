@@ -125,15 +125,15 @@ remote commands. All of these servers are run by xinetd and configured using
 rm -f rexec/rexec
 
 %build
+%serverbuild_hardened
 sh configure
-%{__perl} -pi -e '
-    s,^CC=.*$,CC=cc,;
-    s,-O2,\$(RPM_OPT_FLAGS) -fpic -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE,;
-    s,^LDFLAGS=,LDFLAGS=-pie,;
-    s,^BINDIR=.*$,BINDIR=%{_bindir},;
-    s,^MANDIR=.*$,MANDIR=%{_mandir},;
-    s,^SBINDIR=.*$,SBINDIR=%{_sbindir},;
-    ' MCONFIG
+sed	-e 's#^CC=.*$#CC=gcc#g' \
+	-e 's#-O2#%{optflags} -fPIC -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE#g' \
+	-e 's#^LDFLAGS=#LDFLAGS=%{ldflags}#g' \
+	-e 's#^BINDIR=.*$#BINDIR=%{_bindir}#g' \
+	-e 's#^MANDIR=.*$#MANDIR=%{_mandir}#g' \
+	-e 's#^SBINDIR=.*$#SBINDIR=%{_sbindir}#g' \
+	-i MCONFIG
 
 %make
 
