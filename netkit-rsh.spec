@@ -57,7 +57,6 @@ BuildRequires:	audit-libs-devel >= 1.5
 Conflicts:	krb5-appl-clients
 Obsoletes:	rsh
 Provides:	rsh-client
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The rsh package contains a set of programs which allow users to run commmands
@@ -83,7 +82,6 @@ remote commands. All of these servers are run by xinetd and configured using
 /etc/xinetd.d/ and PAM.  All the server is disabled by default.
 
 %prep
-
 %setup -q -a 4
 
 %patch1 -p1 -b .sectty
@@ -138,8 +136,6 @@ sed	-e 's#^CC=.*$#CC=gcc#g' \
 %make
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_sysconfdir}/xinetd.d
 install -d %{buildroot}%{_sysconfdir}/pam.d
 install -d %{buildroot}%{_bindir}
@@ -158,11 +154,7 @@ install -m0644 %{SOURCE5} %{buildroot}%{_sysconfdir}/xinetd.d/rsh
 install -m0644 %{SOURCE6} %{buildroot}%{_sysconfdir}/xinetd.d/rlogin
 install -m0644 %{SOURCE7} %{buildroot}%{_sysconfdir}/xinetd.d/rexec
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %{_bindir}/rexec
 %attr(4755,root,root) %{_bindir}/rcp
 %attr(4755,root,root) %{_bindir}/rlogin
@@ -170,7 +162,6 @@ rm -rf %{buildroot}
 %{_mandir}/man1/*.1*
 
 %files server
-%defattr(-,root,root)
 %config(noreplace) %{_sysconfdir}/xinetd.d/*
 %config(noreplace) %{_sysconfdir}/pam.d/*
 %{_mandir}/man8/*.8*
