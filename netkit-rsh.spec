@@ -5,7 +5,7 @@ Release:	29
 License:	BSD
 Group:		Networking/Remote access
 URL:		ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/
-Source0:	ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/netkit-rsh-%{version}.tar.gz
+Source0:	ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/%{name}-%{version}.tar.gz
 Source1:	rexec.pam
 Source2:	rlogin.pam
 Source3:	rsh.pam
