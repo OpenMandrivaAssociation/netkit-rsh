@@ -51,7 +51,7 @@ Patch38:	netkit-rsh-0.17-rh461903.patch
 # (ahmad) add check for return values
 # https://bugzilla.redhat.com/show_bug.cgi?id=473492
 Patch39:	netkit-rsh-0.17-rh473492.patch
-BuildRequires:	libtermcap-devel
+BuildRequires:	termcap-devel
 BuildRequires:	pam-devel
 BuildRequires:	audit-libs-devel >= 1.5
 Conflicts:	krb5-appl-clients
