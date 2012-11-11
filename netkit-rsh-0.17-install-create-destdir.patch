@@ -1,0 +1,88 @@
+--- netkit-rsh-0.17/rcp/Makefile.install~	2012-05-30 14:33:25.675078337 +0200
++++ netkit-rsh-0.17/rcp/Makefile	2012-05-30 14:34:46.426068812 +0200
+@@ -7,8 +7,8 @@ rcp: rcp.o
+ 	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
+ 
+ install: rcp
+-	install rcp $(INSTALLROOT)$(BINDIR)
+-	install -m$(MANMODE) rcp.1 $(INSTALLROOT)$(MANDIR)/man1
++	install rcp -D $(INSTALLROOT)$(BINDIR)/rcp
++	install -m$(MANMODE) rcp.1 -D $(INSTALLROOT)$(MANDIR)/man1/rcp.1
+ 
+ clean:
+ 	rm -f *.o rcp
+--- netkit-rsh-0.17/rexecd/Makefile.install~	2012-05-30 14:33:51.884750673 +0200
++++ netkit-rsh-0.17/rexecd/Makefile	2012-05-30 14:37:02.086372825 +0200
+@@ -27,8 +27,8 @@ rexecd: rexecd.o
+ 	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
+ 
+ install: rexecd
+-	install -m$(DAEMONMODE) rexecd $(INSTALLROOT)$(SBINDIR)/in.rexecd
+-	install -m$(MANMODE) rexecd.8 $(INSTALLROOT)$(MANDIR)/man8/in.rexecd.8
++	install -m$(DAEMONMODE) rexecd -D $(INSTALLROOT)$(SBINDIR)/in.rexecd
++	install -m$(MANMODE) rexecd.8 -D $(INSTALLROOT)$(MANDIR)/man8/in.rexecd.8
+ 	ln -sf in.rexecd.8 $(INSTALLROOT)$(MANDIR)/man8/rexecd.8
+ ifeq ($(USE_PAM),1)
+ 	@echo
+--- netkit-rsh-0.17/rexec/Makefile.install~	2012-05-30 14:33:43.486855661 +0200
++++ netkit-rsh-0.17/rexec/Makefile	2012-05-30 14:34:39.650153522 +0200
+@@ -19,5 +19,5 @@ clean:
+ 	rm -f *.o rexec
+ 
+ install: rexec rexec.1
+-	install -m 0755 rexec $(INSTALLROOT)/$(BINDIR)/rexec
+-	install -m 0644 rexec.1 $(INSTALLROOT)/$(MANDIR)/man1/rexec.1
++	install -m 0755 rexec -D $(INSTALLROOT)/$(BINDIR)/rexec
++	install -m 0644 rexec.1 -D $(INSTALLROOT)/$(MANDIR)/man1/rexec.1
+--- netkit-rsh-0.17/rlogind/Makefile.install~	2012-05-30 14:34:01.172634559 +0200
++++ netkit-rsh-0.17/rlogind/Makefile	2012-05-30 14:36:54.408468812 +0200
+@@ -20,8 +20,8 @@ logwtmp.o: logwtmp.h
+ auth.o network.o: rlogind.h
+ 
+ install: rlogind
+-	install -m$(DAEMONMODE) rlogind $(INSTALLROOT)$(SBINDIR)/in.rlogind
+-	install -m$(MANMODE) rlogind.8 $(INSTALLROOT)$(MANDIR)/man8/in.rlogind.8
++	install -m$(DAEMONMODE) rlogind -D $(INSTALLROOT)$(SBINDIR)/in.rlogind
++	install -m$(MANMODE) rlogind.8 -D $(INSTALLROOT)$(MANDIR)/man8/in.rlogind.8
+ 	ln -sf in.rlogind.8 $(INSTALLROOT)$(MANDIR)/man8/rlogind.8
+ 
+ clean:
+--- netkit-rsh-0.17/rlogin/Makefile.install~	2012-05-30 14:33:58.941662449 +0200
++++ netkit-rsh-0.17/rlogin/Makefile	2012-05-30 14:36:03.567104416 +0200
+@@ -10,8 +10,8 @@ $(PROG): $(OBJS)
+ 	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
+ 
+ install: $(PROG)
+-	install $(PROG) $(INSTALLROOT)$(BINDIR)
+-	install -m $(MANMODE) $(PROG).1 $(INSTALLROOT)$(MANDIR)/man1
++	install $(PROG) -D $(INSTALLROOT)$(BINDIR)/$(PROG)
++	install -m $(MANMODE) $(PROG).1 -D $(INSTALLROOT)$(MANDIR)/man1/$(PROG).1
+ 
+ clean:
+ 	rm -f *.o $(PROG)
+--- netkit-rsh-0.17/rshd/Makefile.install~	2012-05-30 14:34:10.137522481 +0200
++++ netkit-rsh-0.17/rshd/Makefile	2012-05-30 14:36:48.119547434 +0200
+@@ -18,8 +18,8 @@ rshd: $(OBJS)
+ 	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
+ 
+ install: rshd
+-	install -m$(DAEMONMODE) rshd $(INSTALLROOT)$(SBINDIR)/in.rshd
+-	install -m$(MANMODE) rshd.8 $(INSTALLROOT)$(MANDIR)/man8/in.rshd.8
++	install -m$(DAEMONMODE) rshd -D $(INSTALLROOT)$(SBINDIR)/in.rshd
++	install -m$(MANMODE) rshd.8 -D $(INSTALLROOT)$(MANDIR)/man8/in.rshd.8
+ 	ln -sf in.rshd.8 $(INSTALLROOT)$(MANDIR)/man8/rshd.8
+ 
+ clean:
+--- netkit-rsh-0.17/rsh/Makefile.install~	2012-05-30 14:34:04.820588953 +0200
++++ netkit-rsh-0.17/rsh/Makefile	2012-05-30 14:36:32.721739932 +0200
+@@ -9,8 +9,8 @@ rsh: $(OBJS)
+ 	$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
+ 
+ install: rsh
+-	install rsh $(INSTALLROOT)$(BINDIR)
+-	install -m$(MANMODE) rsh.1 $(INSTALLROOT)$(MANDIR)/man1
++	install rsh -D $(INSTALLROOT)$(BINDIR)/rsh
++	install -m$(MANMODE) rsh.1 -D $(INSTALLROOT)$(MANDIR)/man1/rsh.1
+ 
+ clean:
+ 	rm -f *.o rsh
