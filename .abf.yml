@@ -1,9 +1,3 @@
 sources:
-  "netkit-rsh-0.17.tar.gz:"	022185bf31af23abbb6d4f34621f94d9d0c4b6ea
-  "rexec-1.5.tar.gz:"	cee670cccf50741022f453b9ae42f3823418b5d2
-  "rexec.pam:"	27b1cef8e15aec286df96af392406626ea54c69d
-  "rexec-xinetd:"	9a4100f88a9bb44364e09f6576cfc8a30da16fa6
-  "rlogin.pam:"	1fe45d8329932440be8ed196aef758d2afa4a303
-  "rlogin-xinetd:"	e694162d946101988e6cefe542dcff0822af901b
-  "rsh.pam:"	599234853ddd6488fe187d09448b851dc788076e
-  "rsh-xinetd:"	11378ef10299ec07d2aa25506aea68c6325d8dd8
+  "netkit-rsh-0.17.tar.gz": 022185bf31af23abbb6d4f34621f94d9d0c4b6ea
+  "rexec-1.5.tar.gz": cee670cccf50741022f453b9ae42f3823418b5d2
