@@ -54,9 +54,9 @@ Patch39:	netkit-rsh-0.17-rh473492.patch
 # (proyvind): create destination directories when installing
 Patch40:	netkit-rsh-0.17-install-create-destdir.patch
 
-BuildRequires:	termcap-devel
+BuildRequires:	ncurses-devel
 BuildRequires:	pam-devel
-BuildRequires:	audit-libs-devel >= 1.5
+BuildRequires:	audit-devel
 Conflicts:	krb5-appl-clients
 Obsoletes:	rsh
 Provides:	rsh-client
