@@ -54,11 +54,10 @@ Patch39:	netkit-rsh-0.17-rh473492.patch
 # (proyvind): create destination directories when installing
 Patch40:	netkit-rsh-0.17-install-create-destdir.patch
 
-BuildRequires:	ncurses-devel
-BuildRequires:	pam-devel
 BuildRequires:	audit-devel
+BuildRequires:	pam-devel
+BuildRequires:	pkgconfig(ncurses)
 Conflicts:	krb5-appl-clients
-Obsoletes:	rsh
 Provides:	rsh-client
 
 %description
@@ -86,7 +85,6 @@ remote commands. All of these servers are run by xinetd and configured using
 
 %prep
 %setup -q -a 4
-
 %patch1 -p1 -b .sectty
 %patch2 -p1 -b .rexec
 %patch3 -p1 -b .stdarg
@@ -165,74 +163,4 @@ install -m0644 %{SOURCE7} -D %{buildroot}%{_sysconfdir}/xinetd.d/rexec
 %{_mandir}/man8/*.8*
 %{_sbindir}/in.*
 
-
-%changelog
-* Wed May 30 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 0.17-28
-+ Revision: 801255
-- automatically create destination directories while installing (P40)
-- clean out deprecated rpm stuff
-- use canonical 'termcap-devel' dependency
-- standardize how %%optflags & %%ldflags are set
-- add 'rsh-client' to provides
-
-* Sat Aug 07 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.17-27mdv2011.0
-+ Revision: 567319
-- renaming for consistency with other netkit packages
-- renaming for consistency with other netkit stuff
-
-* Mon Jul 26 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.17-26mdv2011.0
-+ Revision: 560887
-- drop alternative support, and fix conflict with kerberized versions (#60302)
-
-* Mon Mar 15 2010 Oden Eriksson <oeriksson@mandriva.com> 0.17-25mdv2010.1
-+ Revision: 519982
-- rebuilt against audit-2 libs
-
-* Wed Feb 03 2010 Michael Scherer <misc@mandriva.org> 0.17-24mdv2010.1
-+ Revision: 500243
-- add url for the patch
-
-  + Ahmad Samir <ahmadsamir@mandriva.org>
-    - clean spec
-    - Resync patch 31, 35 and 37 with Fedora (mdv bug #57379)
-    - Fix rlogin.pam and rsh.pam, it's pam_rhosts.so now (from Fedora)
-      (mdv bug #57379)
-    - Add two new patches from Fedora
-
-* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 0.17-23mdv2010.0
-+ Revision: 426962
-- rebuild
-
-* Fri Dec 19 2008 Oden Eriksson <oeriksson@mandriva.com> 0.17-22mdv2009.1
-+ Revision: 316186
-- rediffed one fuzzy patch
-
-* Thu Aug 07 2008 Thierry Vignaud <tv@mandriva.org> 0.17-21mdv2009.0
-+ Revision: 265653
-- rebuild early 2009.0 package (before pixel changes)
-
-* Wed May 14 2008 Oden Eriksson <oeriksson@mandriva.com> 0.17-20mdv2009.0
-+ Revision: 207199
-- sync with rsh-0.17-49.fc9.src.rpm
-- fix the man pages (%%{_extension})
-- fix deps (fixes #40600)
-
-* Wed Mar 05 2008 Oden Eriksson <oeriksson@mandriva.com> 0.17-19mdv2008.1
-+ Revision: 179477
-- rebuild
-
-  + Olivier Blin <blino@mandriva.org>
-    - restore BuildRoot
-
-  + Thierry Vignaud <tv@mandriva.org>
-    - kill re-definition of %%buildroot on Pixel's request
-    - fix summary-ended-with-dot
-
-* Tue Oct 02 2007 Andreas Hasenack <andreas@mandriva.com> 0.17-18mdv2008.0
-+ Revision: 94722
-- fixed pam files for new include syntax (#34367)
-
-* Wed Jun 27 2007 Adam Williamson <awilliamson@mandriva.org> 0.17-17mdv2008.0
-+ Revision: 45195
-- fix pam config (#31656)
 
