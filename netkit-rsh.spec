@@ -1,7 +1,7 @@
 Summary:	Clients for remote access commands (rsh, rlogin, rcp)
 Name:		netkit-rsh
 Version:	0.17
-Release:	35
+Release:	36
 License:	BSD
 Group:		Networking/Remote access
 URL:		ftp://ftp.uk.linux.org/pub/linux/Networking/netkit/
